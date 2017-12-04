@@ -16,7 +16,8 @@
 (defvar my-favorite-package-list
   '(highlight-indentation
     key-chord
-    elscreen)
+    elscreen
+    smart-newline)
   "packages to be installed")
 ;;;;;;;;;;;;;;;;;;;;;;;; MELPA
 
@@ -117,3 +118,24 @@
 (global-set-key (kbd "C->") 'elscreen-next)
 (global-set-key [C-S-left]  'elscreen-previous)
 (global-set-key (kbd "C-<") 'elscreen-previous)
+
+;;;;;;;;;;;;;;;;;;;;;;;; カーソル移動
+;; 自動インデント
+(require 'smart-newline)
+(global-set-key (kbd "C-m") 'smart-newline)
+
+;; "C-h"をbackspaceに (これで<C-backspace>が反応しなくなるので、bindしなおす)
+(global-set-key (kbd "C-h") 'delete-backward-char)
+(global-set-key (kbd "<C-backspace>") 'backward-kill-word)
+
+;; "C-a"で「行頭」と「インデントを飛ばした行頭」を行き来する
+(defun u-move-beginning-of-line ()
+  (interactive)
+  (if (bolp)
+      (back-to-indentation)
+    (beginning-of-line)))
+(global-set-key (kbd "C-a") 'u-move-beginning-of-line)
+
+;; 物理行単位で移動
+(setq line-move-visual nil)
+;;;;;;;;;;;;;;;;;;;;;;;;
