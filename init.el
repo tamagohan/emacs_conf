@@ -20,7 +20,8 @@
     smart-newline
     auto-complete
     smartparens
-    company)
+    company
+    js2-mode)
   "packages to be installed")
 ;;;;;;;;;;;;;;;;;;;;;;;; MELPA
 
@@ -53,11 +54,6 @@
 
 ;;;;;;;;; save
 (setq auto-save-default nil)
-
-;;;;;;;;;;;;;;;;;;;;;;;; ruby mode
-(autoload 'ruby-mode "ruby-mode"
-  "Mode for editing ruby source files" t)
-(add-to-list 'auto-mode-alist '("\\.cap$" . ruby-mode))
 
 ;;;;;;;;;;;;;;;;;;;;;;;; Color-theme:
 (load-theme 'manoj-dark t)
@@ -171,3 +167,15 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+;;;;;;;;;;;;;;;;;;;;;;;; プログラミング支援
+;; Ruby
+(autoload 'ruby-mode "ruby-mode"
+  "Mode for editing ruby source files" t)
+(add-to-list 'auto-mode-alist '("\\.cap$" . ruby-mode))
+
+;; JavaScript
+(require 'js2-mode)
+(autoload 'js2-mode "js2" nil t)
+(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+(add-hook 'js2-mode-hook (lambda () (setq js2-basic-offset 2)))
