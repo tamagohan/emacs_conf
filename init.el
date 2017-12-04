@@ -17,7 +17,10 @@
   '(highlight-indentation
     key-chord
     elscreen
-    smart-newline)
+    smart-newline
+    auto-complete
+    smartparens
+    company)
   "packages to be installed")
 ;;;;;;;;;;;;;;;;;;;;;;;; MELPA
 
@@ -139,3 +142,32 @@
 ;; 物理行単位で移動
 (setq line-move-visual nil)
 ;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;;;;;;;;;;;;;;;;;;;;;;; 補完
+;; auto-complete
+(require 'auto-complete-config)
+(global-auto-complete-mode t)
+
+;; 括弧の自動補完
+(require 'smartparens-config)
+(smartparens-global-mode t)
+(show-smartparens-global-mode t)
+
+;; company-mode
+(require 'company)
+(global-company-mode)
+;;;;;;;;;;;;;;;;;;;;;;;; 補完
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (company web-mode smartparens smart-newline projectile key-chord highlight-indentation elscreen auto-complete))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
