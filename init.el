@@ -21,7 +21,10 @@
     auto-complete
     smartparens
     company
-    js2-mode)
+    js2-mode
+    alchemist
+    ac-alchemist
+    flycheck-mix)
   "packages to be installed")
 ;;;;;;;;;;;;;;;;;;;;;;;; MELPA
 
@@ -179,3 +182,12 @@
 (autoload 'js2-mode "js2" nil t)
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 (add-hook 'js2-mode-hook (lambda () (setq js2-basic-offset 2)))
+
+
+;; Erlang and Elixir
+(require 'elixir-mode)
+(require 'alchemist)
+(require 'flycheck-mix)
+(flycheck-mix-setup)
+(require 'ac-alchemist)
+(add-hook 'elixir-mode-hook 'ac-alchemist-setup)
