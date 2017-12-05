@@ -24,7 +24,8 @@
     js2-mode
     alchemist
     ac-alchemist
-    flycheck-mix)
+    flycheck-mix
+    org)
   "packages to be installed")
 ;;;;;;;;;;;;;;;;;;;;;;;; MELPA
 
@@ -59,7 +60,7 @@
 (setq auto-save-default nil)
 
 ;;;;;;;;;;;;;;;;;;;;;;;; Color-theme:
-(load-theme 'manoj-dark t)
+(load-theme 'wombat t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;; 見た目の変更
 ;; メニューバー、ツールバー、スクロールバーを消す, Emacs23以降
@@ -68,6 +69,8 @@
 (horizontal-scroll-bar-mode 0)
 (menu-bar-mode 0)
 
+;; カーソルの色
+(set-cursor-color 'orange)
 
 ;; 現在行をハイライト
 (global-hl-line-mode t)
@@ -191,3 +194,6 @@
 (flycheck-mix-setup)
 (require 'ac-alchemist)
 (add-hook 'elixir-mode-hook 'ac-alchemist-setup)
+
+;;;;;;;;;;;;;;;;;;;;;;;; org-mode
+(require 'org)
