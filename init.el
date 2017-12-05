@@ -14,7 +14,9 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;; MELPA
 (defvar my-favorite-package-list
-  '(highlight-indentation
+  '(atom-one-dark-theme
+    linum
+    highlight-indentation
     key-chord
     elscreen
     smart-newline
@@ -59,10 +61,14 @@
 ;;;;;;;;; save
 (setq auto-save-default nil)
 
-;;;;;;;;;;;;;;;;;;;;;;;; Color-theme:
-(load-theme 'wombat t)
-
 ;;;;;;;;;;;;;;;;;;;;;;;; 見た目の変更
+;; Color-theme:
+(load-theme 'atom-one-dark t)
+
+;; 行番号
+(require 'linum)
+(global-linum-mode)
+
 ;; メニューバー、ツールバー、スクロールバーを消す, Emacs23以降
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
@@ -74,14 +80,6 @@
 
 ;; 現在行をハイライト
 (global-hl-line-mode t)
-(defface my-hl-line-face
-  '((((class color) (background dark))  ; カラーかつ, 背景が dark ならば
-     (:background "DarkSlateBlue" t))   ; 背景を黒に.
-    (((class color) (background light)) ; カラーかつ, 背景が light でも
-     (:background "DarkSlateBlue" t))   ; 背景を黒に.
-    (t (:bold t)))
-  "hl-line's my face")
-(setq hl-line-face 'my-hl-line-face)
 
 ;; 行の折り返し
 (require 'key-chord)
@@ -173,6 +171,13 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;;;;;;;;;;;;;;;;;;;;;;; CUA
+(cua-mode t)
+(setq cua-enable-cua-keys nil)                         ;; C-cやC-vの乗っ取りを阻止
+(define-key cua-global-keymap (kbd "C-S-SPC") 'ignore) ;; C-S-SPCを空ける(日本語モード => 戻す)
+;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;;;;;;;;;;;;;;;;;;;;;;; プログラミング支援
 ;; Ruby
@@ -195,5 +200,5 @@
 (require 'ac-alchemist)
 (add-hook 'elixir-mode-hook 'ac-alchemist-setup)
 
-;;;;;;;;;;;;;;;;;;;;;;;; org-mode
+;; org-mode
 (require 'org)
