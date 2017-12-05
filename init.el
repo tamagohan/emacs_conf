@@ -114,6 +114,14 @@
                ("\t" 0 'my-face-b-2 append)
                ("　" 0 my-face-b-1 append)
                ))))
+
+;; Font
+(add-to-list 'face-font-rescale-alist '("MeiryoKe_PGothic" . 1.09))
+(create-fontset-from-ascii-font
+ "Arial:weight=normal:slant=normal" nil "variable")
+(set-fontset-font
+ "fontset-variable" 'japanese-jisx0208 (font-spec :family "MeiryoKe_PGothic"))
+(set-face-attribute 'variable-pitch nil :fontset "fontset-variable")
 ;;;;;;;;;;;;;;;;;;;;;;;; 見た目の変更
 
 ;;;;;;;;;;;;;;;;;;;;;;;; elscreenの設定
