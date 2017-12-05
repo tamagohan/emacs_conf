@@ -23,6 +23,7 @@
     auto-complete
     smartparens
     company
+    flyspell
     js2-mode
     alchemist
     ac-alchemist
@@ -177,6 +178,15 @@
 (cua-mode t)
 (setq cua-enable-cua-keys nil)                         ;; C-cやC-vの乗っ取りを阻止
 (define-key cua-global-keymap (kbd "C-S-SPC") 'ignore) ;; C-S-SPCを空ける(日本語モード => 戻す)
+;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;;;;;;;;;;;;;;;;;;;;;;; flyspell
+(setq-default ispell-program-name "/usr/local/bin/aspell")
+(eval-after-load "ispell"
+  '(add-to-list 'ispell-skip-region-alist '("[^\000-\377]+")))
+
+(require 'flyspell)
+(ispell-change-dictionary "american")
 ;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;;;;;;;;;;;;;;;;;;;;;;; プログラミング支援
