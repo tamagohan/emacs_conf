@@ -14,7 +14,8 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;; MELPA
 (defvar my-favorite-package-list
-  '(atom-one-dark-theme
+  '(exec-path-from-shell
+    atom-one-dark-theme
     linum
     highlight-indentation
     key-chord
@@ -28,7 +29,9 @@
     alchemist
     ac-alchemist
     flycheck-mix
-    org)
+    org
+    markdown-mode
+    w3m)
   "packages to be installed")
 ;;;;;;;;;;;;;;;;;;;;;;;; MELPA
 
@@ -42,6 +45,12 @@
   (unless (package-installed-p pkg)
     (package-install pkg)))
 ;;;;;;;;;;;;;;;;;;;;;;;; packageの自動install
+
+;;;;;;;;;;;;;;;;;;;;;;;; exec path
+(require 'exec-path-from-shell)
+  (when (memq window-system '(mac ns x))
+(exec-path-from-shell-initialize))
+;;;;;;;;;;;;;;;;;;;;;;;;
 
 
 ;;; バックアップファイルを作らない
@@ -221,3 +230,19 @@
 
 ;; org-mode
 (require 'org)
+
+;; markdown mode
+(require 'markdown-mode)
+(add-to-list 'auto-mode-alist '("\\.md$"       . gfm-mode))
+(add-to-list 'auto-mode-alist '("\\.markdown$" . gfm-mode))
+(setq markdown-command "/usr/local/bin/multimarkdown")
+;; save時にHTML変換したファイルを保存し、w3mで表示
+(require 'w3m)
+(define-key markdown-mode-map (kbd "\C-c \C-c \C-v")
+  (lambda ()
+    (interactive)
+    (setq html-file-name (concat (file-name-sans-extension (buffer-file-name)) ".html"))
+    (markdown-export html-file-name)
+    (if (one-window-p) (split-window))
+    (other-window 1)
+    (w3m-find-file html-file-name)))
