@@ -230,6 +230,12 @@
 
 ;; org-mode
 (require 'org)
+;; 見出しをインデントする
+(setq org-startup-indented t)
+;; インデントの幅を設定
+(setq org-indent-indentation-per-level 2)
+;; 見出しの初期状態（見出しだけ表示）
+(setq org-startup-folded 'content)
 
 ;; markdown mode
 (require 'markdown-mode)
