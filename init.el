@@ -26,6 +26,7 @@
     company
     flyspell
     js2-mode
+    scala-mode
     alchemist
     ac-alchemist
     flycheck-mix
@@ -227,6 +228,15 @@
 (flycheck-mix-setup)
 (require 'ac-alchemist)
 (add-hook 'elixir-mode-hook 'ac-alchemist-setup)
+
+;; Java
+(add-hook 'java-mode-hook
+  (lambda ()
+    (setq indent-tabs-mode nil)
+    (setq c-basic-offset 2)))
+
+;; Scala
+(require 'scala-mode)
 
 ;; org-mode
 (require 'org)
