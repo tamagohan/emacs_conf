@@ -33,7 +33,11 @@
     org
     markdown-mode
     w3m
-    pdf-tools)
+    pdf-tools
+    rust-mode
+    racer
+    flycheck-rust
+    company-racer)
   "packages to be installed")
 ;;;;;;;;;;;;;;;;;;;;;;;; MELPA
 
@@ -238,6 +242,17 @@
 
 ;; Scala
 (require 'scala-mode)
+
+;; Rust
+;;(add-to-list 'exec-path (expand-file-name "~/.cargo/bin"))
+(require 'company-racer)
+(with-eval-after-load 'company
+  (add-to-list 'company-backends 'company-racer))
+(add-hook 'rust-mode-hook #'racer-mode)
+(add-hook 'rust-mode-hook #'flycheck-rust-setup)
+(add-hook 'racer-mode-hook #'eldoc-mode)
+(add-hook 'racer-mode-hook #'company-mode)
+(add-hook 'after-init-hook #'global-flycheck-mode)
 
 ;; org-mode
 (require 'org)
