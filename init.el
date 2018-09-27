@@ -32,7 +32,8 @@
     flycheck-mix
     org
     markdown-mode
-    w3m)
+    w3m
+    pdf-tools)
   "packages to be installed")
 ;;;;;;;;;;;;;;;;;;;;;;;; MELPA
 
@@ -278,3 +279,7 @@
    (let ((face (intern (format "rainbow-delimiters-depth-%d-face" index))))
     (cl-callf color-saturate-name (face-foreground face) 30))))
 (add-hook 'emacs-startup-hook 'rainbow-delimiters-using-stronger-colors)
+;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+(pdf-tools-install)
